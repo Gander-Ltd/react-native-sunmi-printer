@@ -561,4 +561,22 @@ public class SunmiPrinterModule extends ReactContextBaseJavaModule {
       promise.reject("" + 0, e.getMessage());
     }
   }
+
+  /**
+   * labelOutput
+   *
+   */
+  @ReactMethod
+  public void labelOutput() throws RemoteException {
+    printerService.labelOutput();
+  }
+
+  /**
+   * labelLocate
+   *
+   */
+  @ReactMethod
+  public void labelLocate() throws RemoteException {
+    printerService.labelLocate();
+  }
 }

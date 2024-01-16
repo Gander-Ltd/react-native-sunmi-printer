@@ -336,11 +336,23 @@ type SunmiPrinterType = {
    * @param pixelWidth
    * @param type
    */
-  printBitmapBase64Custom: (encodedString: string, pixelWidth:number, type: number) => void;
+  printBitmapBase64Custom: (
+    encodedString: string,
+    pixelWidth: number,
+    type: number
+  ) => void;
   /**
    * 是否存在打印机服务
    */
   hasPrinter: () => Promise<boolean>;
+  /**
+   * @description Position the next label
+   */
+  labelLocate: () => void;
+  /**
+   * @description Output a label
+   */
+  labelOutput: () => void;
 };
 
 type SunmiScanType = {
