@@ -1872,6 +1872,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@gander-ltd/react-native-sunmi-printer@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@gander-ltd/react-native-sunmi-printer@workspace:."
+  dependencies:
+    "@commitlint/config-conventional": ^11.0.0
+    "@react-native-community/eslint-config": ^2.0.0
+    "@release-it/conventional-changelog": ^2.0.0
+    "@types/jest": ^26.0.0
+    "@types/react": ^16.9.19
+    "@types/react-native": 0.62.13
+    commitlint: ^11.0.0
+    eslint: ^7.2.0
+    eslint-config-prettier: ^7.0.0
+    eslint-plugin-prettier: ^3.1.3
+    husky: ^4.2.5
+    jest: ^26.0.1
+    pod-install: ^0.1.0
+    prettier: ^2.0.5
+    react: 16.13.1
+    react-native: 0.63.4
+    react-native-builder-bob: ^0.18.0
+    release-it: ^14.2.2
+    typescript: ^4.1.3
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  languageName: unknown
+  linkType: soft
+
 "@hapi/address@npm:2.x.x":
   version: 2.1.4
   resolution: "@hapi/address@npm:2.1.4"
@@ -1913,35 +1942,6 @@ __metadata:
   checksum: 34278bc13b4023d6d0d7c913605a254b2d728dc6489cd465269eebaa7d8d2d81cda3f2157398dca87d3cb9e1a8aa8a1158ce2564c71a8e289b807c144e3b4c1e
   languageName: node
   linkType: hard
-
-"@heasy/react-native-sunmi-printer@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@heasy/react-native-sunmi-printer@workspace:."
-  dependencies:
-    "@commitlint/config-conventional": ^11.0.0
-    "@react-native-community/eslint-config": ^2.0.0
-    "@release-it/conventional-changelog": ^2.0.0
-    "@types/jest": ^26.0.0
-    "@types/react": ^16.9.19
-    "@types/react-native": 0.62.13
-    commitlint: ^11.0.0
-    eslint: ^7.2.0
-    eslint-config-prettier: ^7.0.0
-    eslint-plugin-prettier: ^3.1.3
-    husky: ^4.2.5
-    jest: ^26.0.1
-    pod-install: ^0.1.0
-    prettier: ^2.0.5
-    react: 16.13.1
-    react-native: 0.63.4
-    react-native-builder-bob: ^0.18.0
-    release-it: ^14.2.2
-    typescript: ^4.1.3
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  languageName: unknown
-  linkType: soft
 
 "@humanwhocodes/config-array@npm:^0.5.0":
   version: 0.5.0

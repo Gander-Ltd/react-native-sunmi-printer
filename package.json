@@ -1,5 +1,5 @@
 {
-  "name": "@heasy/react-native-sunmi-printer",
+  "name": "@gander-ltd/react-native-sunmi-printer",
   "version": "1.9.0",
   "description": "商米内置打印",
   "main": "lib/commonjs/index",
@@ -32,13 +32,13 @@
     "sunmi",
     "SunmiPrinterDemo"
   ],
-  "repository": "https://github.com/Surile/react-native-sunmi-printer",
+  "repository": "https://github.com/Gander-Ltd/react-native-sunmi-printer",
   "author": "夜雨 <mhecy98@gmail.com> (https://github.com/Surile)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Surile/react-native-sunmi-printer/issues"
+    "url": "https://github.com/Gander-Ltd/react-native-sunmi-printer/issues"
   },
-  "homepage": "https://github.com/Surile/react-native-sunmi-printer#readme",
+  "homepage": "https://github.com/Gander-Ltd/react-native-sunmi-printer#readme",
   "publishConfig": {
     "access": "public"
   },
