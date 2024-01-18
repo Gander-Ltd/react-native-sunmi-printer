@@ -1,6 +1,6 @@
 {
   "name": "@gander-ltd/react-native-sunmi-printer",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "description": "商米内置打印",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
