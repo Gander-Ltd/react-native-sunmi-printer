@@ -31,22 +31,9 @@ public class SunmiScanModule extends ReactContextBaseJavaModule {
   private Promise mPickerPromise;
 
 
-  public class SunmiBroadcastReceiver extends BroadcastReceiver {
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        String action = intent.getAction();
-        if (ACTION_DATA_CODE_RECEIVED.equals(action)) {
-            String code = intent.getStringExtra(SunmiScanModule.DATA);
-            byte[] arr = intent.getByteArrayExtra(SunmiScanModule.SOURCE);
-            if (code != null && !code.isEmpty()) {
-                // Assuming sendEvent is a static method or you have another way to handle this event
-                sendEvent(code);
-            }
-        }
-    }
-  }
 
-  private BroadcastReceiver receiver = new SunmiBroadcastReceiver();
+
+  private BroadcastReceiver receiver = new BroadcastReceiver();
 
   private final ActivityEventListener mActivityEventListener = new BaseActivityEventListener() {
     @Override
@@ -99,7 +86,19 @@ public class SunmiScanModule extends ReactContextBaseJavaModule {
   private void registerReceiver() {
     IntentFilter filter = new IntentFilter();
     filter.addAction(ACTION_DATA_CODE_RECEIVED);
-    reactContext.registerReceiver(receiver, filter);
+
+    compatRegisterReceiver(reactContext, receiver, filter, true);
+  }
+
+  private void compatRegisterReceiver(
+      Context context, BroadcastReceiver receiver, IntentFilter filter, boolean exported) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE
+        && context.getApplicationInfo().targetSdkVersion >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+      context.registerReceiver(
+          receiver, filter, exported ? Context.RECEIVER_EXPORTED : Context.RECEIVER_NOT_EXPORTED);
+    } else {
+      context.registerReceiver(receiver, filter);
+    }
   }
 
   private static void sendEvent(String msg) {
