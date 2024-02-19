@@ -2,7 +2,7 @@
           package="com.reactnativesunmiprinter">
     <original-package android:name="woyou.aidlservice.jiuiv5"/>
 
-    <receiver android:name="com.reactnativesunmiprinter.SunmiBroadcastReceiver"
+    <receiver android:name="com.reactnativesunmiprinter.SunmiScanModule$SunmiBroadcastReceiver"
           android:exported="true">
         <intent-filter>
             <action android:name="com.sunmi.scanner.ACTION_DATA_CODE_RECEIVED" />
