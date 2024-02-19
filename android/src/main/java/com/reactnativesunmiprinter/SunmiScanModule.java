@@ -30,19 +30,10 @@ public class SunmiScanModule extends ReactContextBaseJavaModule {
   private static final String SOURCE = "source_byte";
   private Promise mPickerPromise;
 
-  private BroadcastReceiver receiver = new BroadcastReceiver() {
-    @Override
-    public void onReceive(Context context, Intent intent) {
-      String action = intent.getAction();
-      if (ACTION_DATA_CODE_RECEIVED.equals(action)) {
-        String code = intent.getStringExtra(DATA);
-        byte[] arr = intent.getByteArrayExtra(SOURCE);
-        if (code != null && !code.isEmpty()) {
-          sendEvent(code);
-        }
-      }
-    }
-  };
+
+
+
+  private BroadcastReceiver receiver = new SunmiBroadcastReceiver();
 
   private final ActivityEventListener mActivityEventListener = new BaseActivityEventListener() {
     @Override
