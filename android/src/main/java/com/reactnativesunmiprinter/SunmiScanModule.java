@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -31,9 +32,20 @@ public class SunmiScanModule extends ReactContextBaseJavaModule {
   private Promise mPickerPromise;
 
 
+  private BroadcastReceiver receiver = new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      String action = intent.getAction();
+      if (ACTION_DATA_CODE_RECEIVED.equals(action)) {
+        String code = intent.getStringExtra(DATA);
+        byte[] arr = intent.getByteArrayExtra(SOURCE);
+        if (code != null && !code.isEmpty()) {
+          sendEvent(code);
+        }
+      }
+    }
+  };
 
-
-  private BroadcastReceiver receiver = new BroadcastReceiver();
 
   private final ActivityEventListener mActivityEventListener = new BaseActivityEventListener() {
     @Override
