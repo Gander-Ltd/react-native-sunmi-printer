@@ -31,6 +31,51 @@ public class SunmiScanModule extends ReactContextBaseJavaModule {
   private static final String SOURCE = "source_byte";
   private Promise mPickerPromise;
 
+  public enum ScannerSupporter {
+        alps("alps"),
+        CT58("CT58"),
+        HAND_HELD("GM-B9920P"), HT380K("HT380K"),
+        idata("idata"),
+        KP18("KP18"),
+        MT90("NLS-MT90"), MT66("NLS-MT66"), MT6210("NLS-MT6210"), MT9210("NLS-MT9210"),
+        OTHER("OTHER"),
+        PDA("PDA"), PDT90F("PDT-90F"),
+        SG6900("SG6900"), SUNMI("SUNMI"), SEUIC("SEUIC"),
+        T1("T1"),
+        UBX("UBX");
+
+        private String name;
+
+        ScannerSupporter(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
+    private ScannerSupporter getSupporter() {
+        Log.e("TAG", "型号" + Build.MODEL + "，厂商" + Build.MANUFACTURER);
+        // 先根据型号适配
+        for (ScannerSupporter supporter : ScannerSupporter.values()) {
+            if (supporter.getName().equals(Build.MODEL)) {
+                return supporter;
+            }
+        }
+        // 型号没有，再尝试根据厂商适配
+        for (ScannerSupporter supporter : ScannerSupporter.values()) {
+            if (supporter.getName().equals(Build.MANUFACTURER)) {
+                return supporter;
+            }
+        }
+        return ScannerSupporter.OTHER;
+    }
+
 
   private BroadcastReceiver receiver = new BroadcastReceiver() {
     @Override
@@ -104,6 +149,12 @@ public class SunmiScanModule extends ReactContextBaseJavaModule {
 
   private void compatRegisterReceiver(
       Context context, BroadcastReceiver receiver, IntentFilter filter, boolean exported) {
+
+        if (getSupporter() == ScannerSupporter.OTHER) {
+
+            return;
+        }
+
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE
         && context.getApplicationInfo().targetSdkVersion >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
       context.registerReceiver(
