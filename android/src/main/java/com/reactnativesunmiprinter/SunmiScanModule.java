@@ -112,8 +112,10 @@ public class SunmiScanModule extends ReactContextBaseJavaModule {
   public SunmiScanModule(ReactApplicationContext context) {
     super(context);
     reactContext = context;
-    reactContext.addActivityEventListener(mActivityEventListener);
-    registerReceiver();
+    if (getSupporter() != ScannerSupporter.OTHER) {
+      reactContext.addActivityEventListener(mActivityEventListener);
+      registerReceiver();
+    }
   }
 
   @Override
@@ -141,20 +143,19 @@ public class SunmiScanModule extends ReactContextBaseJavaModule {
   }
 
   private void registerReceiver() {
+    if (getSupporter() == ScannerSupporter.OTHER) {
+      return;
+    }
     IntentFilter filter = new IntentFilter();
     filter.addAction(ACTION_DATA_CODE_RECEIVED);
-
     compatRegisterReceiver(reactContext, receiver, filter, true);
   }
 
   private void compatRegisterReceiver(
       Context context, BroadcastReceiver receiver, IntentFilter filter, boolean exported) {
-
-        if (getSupporter() == ScannerSupporter.OTHER) {
-
-            return;
-        }
-
+    if (getSupporter() == ScannerSupporter.OTHER) {
+      return;
+    }
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE
         && context.getApplicationInfo().targetSdkVersion >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
       context.registerReceiver(
